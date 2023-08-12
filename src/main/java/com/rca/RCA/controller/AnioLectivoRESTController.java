@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app)
 @RestController
 @RequestMapping("/aniolectivo")
 public class AnioLectivoRESTController {
