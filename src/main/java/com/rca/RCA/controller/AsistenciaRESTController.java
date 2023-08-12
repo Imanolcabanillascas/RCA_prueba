@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
 @RestController
 @RequestMapping("/asistencia")
 public class AsistenciaRESTController {
