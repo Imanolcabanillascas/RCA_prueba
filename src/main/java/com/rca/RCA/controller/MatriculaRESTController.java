@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
 @RestController
 @RequestMapping("/matricula")
 public class MatriculaRESTController {
