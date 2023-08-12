@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app/")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
 @RestController
 @RequestMapping("/aula")
 public class AulaRESTController {
