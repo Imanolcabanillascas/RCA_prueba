@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
 import javax.management.AttributeNotFoundException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
 @RestController
 @RequestMapping("/alumno")
 public class AlumnoRESTController {
