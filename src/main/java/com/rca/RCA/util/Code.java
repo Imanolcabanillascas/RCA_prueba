@@ -59,7 +59,7 @@ public class Code {
 
     public static final String RUTA_IMAGENES = "src/main/resources/images";
 
-    public static final String RUTA_SERVIDOR = "http://localhost:8080/";
+    public static final String RUTA_SERVIDOR = "https://rcaprueba-production.up.railway.app/";
 
 
     public static String generateCode(String prefix, long current, int maxLength) {
