@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
 @RestController
 @RequestMapping("/imagen")
 public class ImagenRESTController {
