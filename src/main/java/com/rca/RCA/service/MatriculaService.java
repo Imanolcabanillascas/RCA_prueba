@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -212,12 +214,13 @@ public class MatriculaService {
             List<AlumnoEntity> alumnoEntities = this.alumnoRepository.findByAulaPeriodo(uniqueIdentifierAula, uniqueIdentifierAnio, ConstantsGeneric.CREATED_STATUS).orElseThrow(()->new ResourceNotFoundException("Alumnos no encontrados"));
             AulaEntity aulaEntity = this.aulaRepository.findByUniqueIdentifier(uniqueIdentifierAula, ConstantsGeneric.CREATED_STATUS).orElseThrow(()->new ResourceNotFoundException("Aula no encontrada"));
             AnioLectivoEntity anioLectivoEntity = this.anioLectivoRepository.findByUniqueIdentifier(uniqueIdentifierAnio, ConstantsGeneric.CREATED_STATUS).orElseThrow(()->new ResourceNotFoundException("Año lectivo no encontrado"));
-            final File file = ResourceUtils.getFile("classpath:reportes/alumnosAula.jasper");
-            final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png");
-            final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+            Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
+            Resource imagen = new ClassPathResource("images/logo.png");
+            JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+            InputStream imagenStream = imagen.getInputStream();
 
             final HashMap<String, Object> parameters = new HashMap<>();
-            parameters.put("logoEmpresa", new FileInputStream(imgLogo));
+            parameters.put("logoEmpresa", imagenStream);
             parameters.put("Grado", String.valueOf(aulaEntity.getAulaDTO().getGradoDTO().getName()));
             parameters.put("Seccion", String.valueOf(aulaEntity.getAulaDTO().getSeccionDTO().getName()));
             parameters.put("Anio", anioLectivoEntity.getAnioLectivoDTO().getName());
