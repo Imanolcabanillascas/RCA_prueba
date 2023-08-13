@@ -250,10 +250,9 @@ public class AlumnoService {
                 final AlumnoEntity alumnoEntity = optionalAlumnoEntity.get();
                 final ApoderadoEntity apoderadoEntity = alumnoEntity.getApoderadoEntity();
                 final UsuarioEntity usuarioEntity = alumnoEntity.getUsuarioEntity();
-                // Load the report template using ClassLoader.getResourceAsStream()
-                InputStream reportTemplateStream = getClass().getClassLoader().getResourceAsStream("reportes/datosPersonales.jasper");
+                Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
                 final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png");
-                JasperReport report = (JasperReport) JRLoader.loadObject(reportTemplateStream);
+                final JasperReport report = (JasperReport) JRLoader.loadObject((File) resource);
 
 
 
