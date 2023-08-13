@@ -250,7 +250,7 @@ public class AlumnoService {
                 final AlumnoEntity alumnoEntity = optionalAlumnoEntity.get();
                 final ApoderadoEntity apoderadoEntity = alumnoEntity.getApoderadoEntity();
                 final UsuarioEntity usuarioEntity = alumnoEntity.getUsuarioEntity();
-                final Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
+                final File file = ResourceUtils.getFile("classpath:reportes/datosPersonales.jasper");
                 final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png");
                 final JasperReport report = (JasperReport) JRLoader.loadObject(file);
 
