@@ -252,7 +252,8 @@ public class AlumnoService {
                 final UsuarioEntity usuarioEntity = alumnoEntity.getUsuarioEntity();
                 Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
                 Resource imagen = new ClassPathResource("images/logo.png");
-                final JasperReport report = (JasperReport) JRLoader.loadObject((File) resource);
+                JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+                InputStream imagenStream = imagen.getInputStream();
 
 
 
@@ -267,7 +268,7 @@ public class AlumnoService {
                 parameters.put("numDocAlu", usuarioEntity.getNumdoc());
                 parameters.put("telAlu", usuarioEntity.getTel());
                 parameters.put("vacunas", alumnoEntity.getVaccine());
-                parameters.put("logo", new FileInputStream((File) imagen));
+                parameters.put("logo", imagenStream);
                 parameters.put("nombreCon1", alumnoEntity.getNamecon_pri());
                 parameters.put("nombreCon2", alumnoEntity.getNamecon_sec());
                 parameters.put("telCon1", alumnoEntity.getTelcon_pri());
