@@ -264,7 +264,7 @@ public class EvaluacionService {
             try{
                 final PeriodoEntity periodoEntity = optionalPeriodoEntity.get();
                 final AlumnoEntity alumnoEntity = optionalAlumnoEntity.get();
-                Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
+                Resource resource = new ClassPathResource("reportes/cursosEvaluacion.jasper");
                 Resource imagen = new ClassPathResource("images/logo.png");
                 JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
                 InputStream imagenStream = imagen.getInputStream();
@@ -326,7 +326,7 @@ public class EvaluacionService {
             try{
                 final PeriodoEntity periodoEntity = optionalPeriodoEntity.get();
                 final CursoEntity cursoEntity = optionalCursoEntity.get();
-                Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
+                Resource resource = new ClassPathResource("reportes/notasCurso.jasper");
                 Resource imagen = new ClassPathResource("images/logo.png");
                 JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
                 InputStream imagenStream = imagen.getInputStream();
