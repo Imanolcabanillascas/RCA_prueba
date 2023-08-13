@@ -30,6 +30,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
+import java.io.InputStream;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -248,7 +250,7 @@ public class AlumnoService {
                 final AlumnoEntity alumnoEntity = optionalAlumnoEntity.get();
                 final ApoderadoEntity apoderadoEntity = alumnoEntity.getApoderadoEntity();
                 final UsuarioEntity usuarioEntity = alumnoEntity.getUsuarioEntity();
-                final File file = ResourceUtils.getFile("classpath:reportes/datosPersonales.jasper");
+                final Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
                 final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png");
                 final JasperReport report = (JasperReport) JRLoader.loadObject(file);
 
