@@ -59,7 +59,7 @@ public class Code {
 
     public static final String RUTA_IMAGENES = "src/main/resources/images";
 
-    public static final String RUTA_SERVIDOR = "https://rcaprueba-production.up.railway.app/";
+    public static final String RUTA_SERVIDOR = "https://charming-pasca-b5af07.netlify.app/";
 
 
     public static String generateCode(String prefix, long current, int maxLength) {

@@ -5,6 +5,7 @@ import com.rca.RCA.type.ApiResponse;
 import com.rca.RCA.type.GradoDTO;
 import com.rca.RCA.type.Pagination;
 import com.rca.RCA.type.ApoderadoDTO;
+import com.rca.RCA.util.Code;
 import com.rca.RCA.util.exceptions.AttributeException;
 import com.rca.RCA.util.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "https://profound-dodol-bcf620.netlify.app")
+@CrossOrigin(origins = Code.RUTA_SERVIDOR)
 @RestController
 @RequestMapping("apoderado")
 public class ApoderadoRESTController {
