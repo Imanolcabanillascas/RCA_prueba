@@ -24,14 +24,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
+import org.springframework.core.io.ClassPathResource;
+import java.io.InputStream;
 @Log4j2
 @Service
 public class AsistenciaService {
@@ -246,9 +246,11 @@ public class AsistenciaService {
                 gradoEntity !=null && gradoEntity.getStatus().equalsIgnoreCase(ConstantsGeneric.CREATED_STATUS) &&
                 seccionEntity != null && seccionEntity.getStatus().equalsIgnoreCase(ConstantsGeneric.CREATED_STATUS)) {
             try {
-                final File file = ResourceUtils.getFile("classpath:reportes/asistencias_alumno.jasper"); //la ruta del reporte
-                final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png"); //Ruta de la imagen
-                final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+                Resource resource = new ClassPathResource("reportes/asistencias_alumno.jasper");
+                Resource imagen = new ClassPathResource("images/logo.png");
+                JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+                InputStream imagenStream = imagen.getInputStream();
+
                 //Se consultan los datos para el reporte de asistencias DTO
                 List<AsistenciaEntity> asistenciaEntities = this.asistenciaRepository.findAsistencias(id_alumno, id_periodo, id_aniolectivo, ConstantsGeneric.CREATED_STATUS).orElseThrow(()-> new ResourceNotFoundException("Asistencias no encontrados"));
                 //Se agregan los datos para Reporte de Asistencias
@@ -263,7 +265,7 @@ public class AsistenciaService {
 
                 //Se llenan los parámetros del reporte
                 final HashMap<String, Object> parameters = new HashMap<>();
-                parameters.put("logoEmpresa", new FileInputStream(imgLogo));
+                parameters.put("logoEmpresa", imagenStream);
                 parameters.put("nombreAlumno", alumnoEntity.getNombresCompletosAl());
                 parameters.put("periodo", periodoEntity.getName());
                 parameters.put("grado", gradoEntity.getName().toString());
@@ -303,9 +305,10 @@ public class AsistenciaService {
             CursoEntity cursoEntity = this.cursoRepository.findByUniqueIdentifier(id_curso, ConstantsGeneric.CREATED_STATUS).orElseThrow(()->new ResourceNotFoundException("Curso no encontrado"));
             DocenteEntity docenteEntity = this.docenteRepository.findAulaAnio(id_aula, id_curso, id_aniolectivo, ConstantsGeneric.CREATED_STATUS).orElse(new DocenteEntity());
 
-            final File file = ResourceUtils.getFile("classpath:reportes/asistencias_aula.jasper"); //la ruta del reporte
-            final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png"); //Ruta de la imagen
-            final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+            Resource resource = new ClassPathResource("reportes/asistencias_aula.jasper");
+            Resource imagen = new ClassPathResource("images/logo.png");
+            JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+            InputStream imagenStream = imagen.getInputStream();
             //Se consultan los datos para el reporte de asistencias DTO
             List<AlumnoEntity> alumnoEntities = this.aulaRepository.findAlumnosxAula(id_aula, id_aniolectivo, ConstantsGeneric.CREATED_STATUS).orElse(new ArrayList<>());
             //Se agregan los datos para Reporte de Asistencias
@@ -330,7 +333,7 @@ public class AsistenciaService {
 
             //Se llenan los parámetros del reporte
             final HashMap<String, Object> parameters = new HashMap<>();
-            parameters.put("logoEmpresa", new FileInputStream(imgLogo));
+            parameters.put("logoEmpresa", imagenStream);
             parameters.put("curso", cursoEntity.getName());
             parameters.put("grado", aulaEntity.getGradoEntity().getName().toString());
             parameters.put("seccion", aulaEntity.getSeccionEntity().getName().toString());
@@ -367,9 +370,12 @@ public class AsistenciaService {
         try {
             ClaseEntity claseEntity = this.claseRepository.findByUniqueIdentifier(id_clase).orElseThrow(()-> new ResourceNotFoundException("No existe la clase"));
             List<AsistenciaEntity> asistenciaEntities = this.asistenciaRepository.findByClase(id_clase, ConstantsGeneric.CREATED_STATUS).orElseThrow(()-> new ResourceNotFoundException("No existen asistencias"));
-            final File file = ResourceUtils.getFile("classpath:reportes/asistencias_clase.jasper"); //la ruta del reporte
-            final File imgLogo = ResourceUtils.getFile("classpath:images/logo.png"); //Ruta de la imagen
-            final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+            
+            Resource resource = new ClassPathResource("reportes/asistencias_clase.jasper");
+            Resource imagen = new ClassPathResource("images/logo.png");
+            JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+            InputStream imagenStream = imagen.getInputStream();
+            
             //Se consultan los datos para el reporte de asistencias DTO
             //Se agregan los datos para Reporte de Asistencias
             List<ReporteAsistenciaClaseDTO> reporteAsistenciaClaseDTOS= new ArrayList<>();
@@ -394,7 +400,7 @@ public class AsistenciaService {
             }
             //Se llenan los parámetros del reporte
             final HashMap<String, Object> parameters = new HashMap<>();
-            parameters.put("logoEmpresa", new FileInputStream(imgLogo));
+            parameters.put("logoEmpresa", imagenStream);
             parameters.put("curso", claseEntity.getDocentexCursoEntity().getCursoEntity().getName());
             parameters.put("grado", claseEntity.getDocentexCursoEntity().getAulaEntity().getGradoEntity().getName().toString());
             parameters.put("seccion", claseEntity.getDocentexCursoEntity().getAulaEntity().getSeccionEntity().getName().toString());

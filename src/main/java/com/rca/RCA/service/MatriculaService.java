@@ -123,7 +123,7 @@ public class MatriculaService {
         AnioLectivoEntity anioLectivoEntity = this.anioLectivoRepository.findByUniqueIdentifier(matriculaDTO.getAnioLectivoDTO().getId(), ConstantsGeneric.CREATED_STATUS).orElseThrow(()-> new ResourceNotFoundException("Año lectivo no existe"));
         //Set update data
         matriculaEntity.setDate(matriculaDTO.getDate());
-        matriculaEntity.setAlumnoEntity(alumnoEntity);
+        matriculaEntity.setAlumnoEntity(alumnoEntity);  
         matriculaEntity.setAulaEntity(aulaEntity);
         matriculaEntity.setAnio_lectivoEntity(anioLectivoEntity);
         matriculaEntity.setUpdateAt(LocalDateTime.now());
