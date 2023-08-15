@@ -186,7 +186,7 @@ public class AulaService {
         AulaEntity aulaEntity = this.aulaRepository.findByUniqueIdentifier(id_aula, ConstantsGeneric.CREATED_STATUS).orElseThrow(()-> new ResourceNotFoundException("Aula no existe"));
         AnioLectivoEntity anioLectivoEntity = this.anioLectivoRepository.findByUniqueIdentifier(id_aniolectivo, ConstantsGeneric.CREATED_STATUS).orElseThrow(()-> new ResourceNotFoundException("Aula no existe"));
         try {
-            Resource resource = new ClassPathResource("reportes/datosPersonales.jasper");
+            Resource resource = new ClassPathResource("reportes/lista_apoderados.jasper");
             Resource imagen = new ClassPathResource("images/logo.png");
             JasperReport report = (JasperReport) JRLoader.loadObject(resource.getInputStream());
             InputStream imagenStream = imagen.getInputStream();
