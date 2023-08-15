@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -55,8 +56,6 @@ public class MainSecurity  {
                         "/swagger-ui/**",
                         "/webjars/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/noticia/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/images/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/images/").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/images/**").permitAll()
                 //permitidos sin auth el método get
                 .anyRequest().authenticated();
@@ -64,6 +63,11 @@ public class MainSecurity  {
         http.exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+
+    @Bean
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().requestMatchers(HttpMethod.GET, "/images/**");
     }
 }
 
