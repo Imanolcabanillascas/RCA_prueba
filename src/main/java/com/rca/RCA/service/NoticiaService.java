@@ -124,7 +124,7 @@ public class NoticiaService {
             throw new RuntimeException(e);
         }
 
-        String route = Code.RUTA_SERVIDOR + "images/" + nombreArchivo;
+        String route = Code.RUTA_SERVIDOR_TRUE + "images/" + nombreArchivo;
         NoticiaDTO.setRoute(route);
 
         //change dto to entity
@@ -200,7 +200,7 @@ public class NoticiaService {
                 throw new RuntimeException(e);
             }
 
-            String route = Code.RUTA_SERVIDOR + "images/" + nombreArchivo;
+            String route = Code.RUTA_SERVIDOR_TRUE + "images/" + nombreArchivo;
 
             NoticiaEntity.setRoute(route);
             NoticiaEntity.setUsuarioEntity(usuarioEntity);

@@ -61,6 +61,8 @@ public class Code {
 
     public static final String RUTA_SERVIDOR = "https://charming-pasca-b5af07.netlify.app/";
 
+    public static final String RUTA_SERVIDOR_TRUE = "https://rcaprueba-production.up.railway.app/";
+
 
     public static String generateCode(String prefix, long current, int maxLength) {
         String complement =  completeZero(prefix, maxLength - (prefix.length() + String.valueOf(current).length()));
