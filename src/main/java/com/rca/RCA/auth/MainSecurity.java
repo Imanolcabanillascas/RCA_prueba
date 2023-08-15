@@ -56,6 +56,7 @@ public class MainSecurity  {
                         "/webjars/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/noticia/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/images/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/images/").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/images/**").permitAll()
                 //permitidos sin auth el método get
                 .anyRequest().authenticated();
