@@ -197,6 +197,7 @@ public class NoticiaService {
             try {
                 Files.write(rutaArchivo, imageBytes);
             } catch (IOException e) {
+                e.printStackTrace(); // Agrega este registro para ver detalles del error
                 throw new RuntimeException(e);
             }
 
