@@ -59,7 +59,7 @@ public class Code {
 
     public static final String RUTA_IMAGENES = "src/main/resources/images";
 
-    public static final String RUTA_SERVIDOR = "https://charming-pasca-b5af07.netlify.app/";
+    public static final String RUTA_SERVIDOR = "https://https://64f21041bb0279009350f8aa--fantastic-kataifi-1b7956.netlify.app/";
 
     public static final String RUTA_SERVIDOR_TRUE = "https://rcaprueba-production-b695.up.railway.app/";
 
